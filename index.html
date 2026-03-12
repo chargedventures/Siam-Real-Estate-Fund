@@ -465,7 +465,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
         
         // Switch the flex container from row to column so our spans stack vertically
         flexContainer.style.flexDirection = 'column';
-        flexContainer.style.gap = '2px';
+        flexContainer.style.gap = '2px'; flexContainer.style.alignItems = 'flex-start';
         
         // Hide all children of the flex container
         Array.from(flexContainer.children).forEach(function(child) {
@@ -476,12 +476,12 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
         var span1 = document.createElement('span');
         span1.className = 'siam-deal-line1';
         span1.textContent = dealLine1[idx];
-        span1.style.cssText = 'display:block;font-size:inherit;color:inherit;font-family:inherit;font-weight:inherit;line-height:1.4;white-space:nowrap;';
+        span1.style.cssText = 'display:block;font-size:14px;color:rgba(153, 153, 153, 1);font-family:"Geist",sans-serif;font-weight:400;line-height:1.4;white-space:nowrap;text-align:left;letter-spacing:-0.2px;';
         
         var span2 = document.createElement('span');
         span2.className = 'siam-deal-line2';
         span2.textContent = dealLine2[idx];
-        span2.style.cssText = 'display:block;font-size:inherit;color:inherit;font-family:inherit;font-weight:inherit;line-height:1.4;white-space:nowrap;';
+        span2.style.cssText = 'display:block;font-size:14px;color:rgba(153, 153, 153, 1);font-family:"Geist",sans-serif;font-weight:400;line-height:1.4;white-space:nowrap;text-align:left;letter-spacing:-0.2px;';
         
         flexContainer.appendChild(span1);
         flexContainer.appendChild(span2);
@@ -493,6 +493,214 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     setTimeout(replaceBedsBaths, 800);
     setTimeout(replaceBedsBaths, 2000);
     
+    
+    // ========================================
+    // 15. MASSIVE CONTENT OVERRIDES (Insights + Structure)
+    // ========================================
+    var contentMap = {
+      // Blog / Insights
+      "BLOG": "INVESTOR INSIGHTS",
+      "Blog": "Investor Insights",
+      "Articles, updates, and more.": "Clear, practical guidance for foreign investors evaluating Thailand real estate\u2014ownership pathways, liquidity planning, compliance, and the documentation that protects your exit.",
+      
+      // Article 1
+      "Designing your first home checklist": "Foreign Ownership in Thailand: What\u2019s Legal, What\u2019s Risky, and a Safer Partner Model",
+      "Essential guide to designing your first home": "A candid breakdown of what foreigners can and can\u2019t own, why nominee structures are under scrutiny, and how a compliant partner + SPV model can de-risk your exposure.",
+      
+      // Article 2
+      "Investing in real estate with Habitura": "Liquidity in Thai Real Estate: Why Exits Feel Hard\u2014and How We Engineer Them",
+      "Learn how to invest in real estate": "Real liquidity is not a promise\u2014it\u2019s a system: transferable rights, pricing rules, funding, and disciplined disclosure.",
+      
+      // Article 3
+      "A Guide on buying a house in California": "Repatriation & Paperwork: The FET Form, Clean Money Trails, and Protecting Your Exit",
+      "Essential guide to buying a house in California": "Most \u201CThailand property horror stories\u201D start with one missing document. Here\u2019s how to stay bankable from day one.",
+      
+      // Article meta overriding
+      "Dec 6, 2023": "6\u20138 min read",
+      "Dec 5, 2023": "6\u20139 min read",
+      "Dec 4, 2023": "6\u20138 min read",
+      "Architecture": "Compliance",
+      "Design": "Structuring",
+      "Real Estate": "Liquidity",
+      
+      // Structure page
+      "About Us": "Structure",
+      "About": "Structure",
+      "ABOUT US": "STRUCTURE",
+      "Building a better way to buy and sell real estate": "A transparent structure built for foreign capital",
+      "We pair our deep market knowledge, innovative technology": "Local execution. Cross-border governance. Clean documentation. Defined exit paths.",
+      
+      // Structure - Values
+      "OUR VALUES": "CORE PRINCIPLES",
+      "What drives us": "How ownership is structured",
+      "Innovation": "HoldCo: Netherlands",
+      "We embrace change and innovation": "Investors participate via a Dutch holding company, which owns stakes in dedicated Thai operating companies (one per property). This keeps each asset ring-fenced and simplifies reporting.",
+      
+      "Integrity": "Thai Partner: 51%",
+      "We take pride in doing the right thing": "The Thai partner entity holds majority ownership at the operating level. Governance is defined contractually, with clear rights, reporting obligations, and transfer rules.",
+      
+      "Empowerment": "Foreign exposure: up to 49%",
+      "We empower our team to be the best": "We use a simple capital stack designed for clarity: investor economics are delivered via preferred equity and shareholder loans. Loan principal repayment is treated as return of capital; withholding may apply to interest depending on investor profile and treaty position.",
+      
+      "Excellence": "One OpCo per property",
+      "We always deliver excellence to our clients": "Investors can pursue a market sale at any time. Where structured liquidity is offered, it is funded and rule-based: reserves, optional credit facilities, and defined redemption windows with caps. We do not rely on 'marketing guarantees'.",
+      "TEAM OF EXPERTS": ""
+    };
+
+    var cw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var cn;
+    while (cn = cw.nextNode()) {
+      var cv = (cn.nodeValue||'').trim();
+      
+      // Exact Match
+      if (contentMap[cv]) cn.nodeValue = contentMap[cv];
+      
+      // Special Substring Replacement for long paragraphs
+      if (cv.indexOf('Habitura is redefining the real estate experience') !== -1) {
+          cn.nodeValue = "We structure each deal so foreign investors can participate transparently in Thailand real estate while avoiding the common failure modes: nominee risk, unclear ownership rights, poor documentation, and illiquid exits.";
+      }
+      if (cv.indexOf('The Habitura founders') !== -1) {
+          cn.nodeValue = "Thai authorities have publicly highlighted intensified scrutiny of nominee patterns, including investigations in tourism and real estate sectors. A structure built on real economics and traceable capital flows is no longer optional\u2014it\u2019s the baseline for serious investment.";
+      }
+      if (cv.indexOf('Discover what drives us') !== -1) {
+          cn.nodeValue = "Compliance-first operations: Rental strategies must match the legal reality. Short-term accommodation can fall under hotel-business licensing rules; non-compliant strategies create enforcement and reputational risk. Our approach prioritises compliant operation and full disclosure.";
+      }
+    }
+
+
+    // ========================================
+    // 16. ARTICLE AND STRUCTURE DEEP OVERRIDES
+    // ========================================
+    var subMap = [
+      // Article 1
+      ["Foreign investors like Thailand for lifestyle and yields", "Foreign investors like Thailand for lifestyle and yields\u2014but many hesitate because ownership rules feel opaque, and \u201Cworkarounds\u201D can create hidden legal risk.\n\nHere are the only questions that matter at the start:\n\nHave you bought a unit title, or have you bought a structure?\nIf you\u2019re buying a condominium unit in your own name, you are usually relying on the foreign ownership quota mechanics (commonly referred to as the 49% rule). If the quota is full, your \u201Cdeal\u201D may not actually be transferable to you as foreign freehold\u2014no matter what the sales pitch says.\n\nIf you\u2019re buying land or villas, who holds the title deed?\nForeign individuals generally do not buy land directly. Many investors then hear, \u201CJust use a Thai company.\u201D This is where risk splits into two paths:\n\nPath A: compliant Thai partner (substance).\nA Thai majority partner is a real investor, with real capital at risk, real rights, and a traceable return profile.\n\nPath B: nominee shareholders (form, not substance).\nThis is where Thai shareholders are placeholders to allow effective foreign control, without real capital or economic participation. It is illegal, and enforcement focus has increased\u2014especially in tourism and property-heavy provinces.\n\nRecent public reporting and professional commentary have highlighted multi-agency activity and heightened scrutiny of nominee patterns\u2014particularly in real estate and hospitality-linked structures.\n\nWhat we do differently: a partner model designed to survive scrutiny\nOur fund is built around a simple premise: if a structure cannot withstand \u201Csubstance over form\u201D scrutiny, it is not investable.\n\nWe implement:\n\nA Thai partner entity with genuine economics (not paper nominees).\nOne operating company (SPV) per deal to ring-fence risks.\nA Dutch holding company for investor onboarding and consolidated governance.\nContractual rights that are explicit, readable, and enforceable (not \u201Chandshake assurances\u201D).\n\nYour pre-investment checklist\nBefore you invest in any Thailand deal\u2014fund or direct\u2014ask for the following in writing:\n\nWhat exactly is owned (unit title deed, land title deed, or company shares)?\nIf corporate: who holds the shares, and what proof exists of real shareholder funding?\nWhat documents prove compliance around remittance and transfer formalities?\nWhat is the rental strategy, and is it legally compliant for the property type?\nWhat is the true exit path: market sale, structured liquidity, or \u201Cbest effort\u201D?\n\nBottom line\nThailand is investable, but only if you refuse \u201Cshortcuts\u201D and insist on a transparent structure, clean documentation, and commercial realism on liquidity."],
+      
+      // Article 2
+      ["Liquidity is the number one reason foreign investors hesitate", "Liquidity is the number one reason foreign investors hesitate to allocate serious capital into Thailand real estate. The fear is simple: \u201CWhat if I need to exit and can\u2019t?\u201D\n\nTo answer that honestly, you must separate three ideas:\n\nLiquidity is a market problem\nSome assets have thin buyer pools. Some locations go through cycles. Some property types rely on a narrow demographic.\n\nLiquidity is also a transaction-cost problem\nThailand has meaningful government fees/taxes at transfer. If the deal is marginal, costs can erase \u201Cpaper gains\u201D at exit. A credible sponsor shows these costs upfront rather than burying them in fine print.\n\nLiquidity is a structure problem\nEven if the market exists, you may not be able to transfer your rights if the structure is poorly drafted (or built on non-compliant arrangements).\n\nTwo exits: market exit vs structured liquidity\nIn a professionally structured deal, there are two paths:\n\nMarket exit (any time): sell at market price to a third party.\nYour ability to do this depends on whether your rights are transferable and your documentation is clean.\n\nStructured liquidity (if offered): a clearly defined redemption or buyback mechanism, with published rules and limits.\nIf someone says \u201Cguaranteed exit\u201D without showing how it is funded, treat it as marketing\u2014not liquidity.\n\nWhat credible structured liquidity looks like\nA credible mechanism requires all four components:\n\nClear legal transfer rights\nIf leasehold is used anywhere in the stack, transfer/subletting is prohibited by default unless the contract permits it. Drafting must explicitly allow assignment/transfer.\n\nTransparent pricing rules\nEither NAV-linked with an independent valuation policy, or a disclosed schedule per offer.\n\nFunding\nA structured mechanism must be supported by:\na liquidity reserve,\noptional credit support (prearranged facility), and/or\nasset recycling (planned disposals).\n\nLimits\nLiquidity should be offered in defined windows and capped by policy to avoid \u201Crun risk\u201D on a portfolio.\n\nWhat we publish (because trust converts)\nFor each live deal we disclose, at minimum:\nthe route to exit (market sale + any structured mechanism),\ntransfer-cost expectations, and\nthe valuation approach used when investors transact internally or redeem.\n\nBottom line\nLiquidity is engineered. If you can\u2019t see the mechanics, you don\u2019t have liquidity\u2014you have hope."],
+      
+      // Article 3
+      ["Foreign investors often focus on the asset and ignore", "Foreign investors often focus on the asset and ignore the paperwork. In Thailand, documentation is not admin\u2014it\u2019s your mobility.\n\nIf your funds are not remitted correctly, you can face complications when:\nregistering ownership (where relevant),\nselling later, and\nmoving proceeds across borders.\n\nThe document that matters: Proof of Foreign Exchange Transaction (FET / FETF)\nFor foreign condominium ownership, Thai practice commonly requires evidence that purchase funds were remitted into Thailand as foreign currency and converted properly. Banks issue the supporting certificate, and it is presented to the authorities during registration.\n\nThe practical rule is simple: treat the proof as part of the asset\u2014store it like a title deed.\n\nWhy this becomes an \u201Cexit issue\u201D\nAt resale, banks commonly want the original remittance evidence to facilitate outward transfers. If you can\u2019t produce it, you may still exit\u2014just with more friction, delays, and uncertainty.\n\nHow to avoid mistakes (simple investor protocol)\nUse this protocol whenever remitting capital for Thailand property exposure:\n\nSend in foreign currency from abroad (not from a local Thai account).\nEnsure the sender name matches the buyer/investor name in the documents.\nUse the correct remittance purpose statement.\nKeep a document vault: payment proof, bank certificates, contracts, and transfer receipts.\n\nFor investors using modern remittance platforms, it is still possible to obtain bank-issued proof for property purposes, but you must request it correctly.\n\nEscrow is not \u201Cextra\u201D\u2014it\u2019s a fraud-control tool\nFor larger transactions, escrow can reduce the risk of payment errors and fraud by releasing funds only once agreed conditions are met.\n\nHow we operationalise this in the fund\nWe standardise investor payment instructions, maintain a document vault, and align each deal with a transfer-ready pack so exits don\u2019t become \u201Cpaperwork surprises\u201D."]
+    ];
+
+    var oldArticlesReplaced = false;
+    setInterval(function() {
+      // Find and replace the article body paragraphs
+      document.querySelectorAll('p, div, span').forEach(function(el) {
+         if(el.childElementCount > 0) return;
+         var t = el.textContent || '';
+         
+         // If this is a placeholder article body from Framer, replace it
+         if (t.indexOf('Habitura sets a new standard for luxury real estate') !== -1 ||
+             t.indexOf('The journey to owning a luxury property is often') !== -1 ||
+             t.indexOf('Every great home begins with a solid plan') !== -1) {
+             
+             // Check the closest H1 or H2 title to see which article it relates to.
+             var wrapper = el.closest('div[style*="max-width"]');
+             var articleNum = 0;
+             if (wrapper) {
+                 var h1 = wrapper.querySelector('h1')?.textContent || '';
+                 if (h1.indexOf('Foreign Ownership') !== -1) articleNum = 1;
+                 else if (h1.indexOf('Liquidity') !== -1) articleNum = 2;
+                 else if (h1.indexOf('Repatriation') !== -1) articleNum = 3;
+             } else {
+                 // Fallback guessing
+                 var html = document.body.innerHTML;
+                 if (html.indexOf('Foreign Ownership in Thailand') !== -1) articleNum = 1;
+             }
+             
+             if (articleNum === 1) el.textContent = subMap[0][1];
+             if (articleNum === 2) el.textContent = subMap[1][1];
+             if (articleNum === 3) el.textContent = subMap[2][1];
+             el.style.whiteSpace = 'pre-wrap';
+         }
+         
+         // Structure page visual diagram
+         if (t.indexOf('About Us') === -1 && document.location.pathname.indexOf('about') !== -1) {
+             // Find large images and replace with Mermaid SVG
+             document.querySelectorAll('img').forEach(function(img) {
+               if (img.width > 300 && img.height > 200 && !img.dataset.siamChart) {
+                 img.dataset.siamChart = '1';
+                 var svgChart = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="auto" style="background:#ffffff;border:1px solid #E8E8E8;border-radius:12px;padding:24px;">
+<g style="font-family:'Inter', sans-serif; font-size:14px;">
+    <!-- Nodes -->
+    <rect x="300" y="20" width="200" height="40" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="400" y="45" text-anchor="middle" fill="#0B0B0B" font-weight="600">Foreign Investor</text>
+    <path d="M400 60 L400 90" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <rect x="250" y="90" width="300" height="50" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="400" y="110" text-anchor="middle" fill="#0B0B0B" font-weight="600">Dutch BV Holding Company</text>
+    <text x="400" y="128" text-anchor="middle" fill="#666" font-size="12px">(Netherlands)</text>
+    <path d="M400 140 L400 170" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <rect x="250" y="170" width="300" height="50" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="400" y="190" text-anchor="middle" fill="#0B0B0B" font-weight="600">Thai Partner Entity</text>
+    <text x="400" y="208" text-anchor="middle" fill="#666" font-size="12px">(Legitimate 51% Thai ownership)</text>
+    
+    <path d="M400 220 L200 250" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M400 220 L400 250" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M400 220 L600 250" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    
+    <rect x="50" y="250" width="200" height="60" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="150" y="270" text-anchor="middle" fill="#0B0B0B" font-weight="600">Thai OpCo Ltd</text>
+    <text x="150" y="285" text-anchor="middle" fill="#666" font-size="11px">(separate per property)</text>
+    <text x="150" y="300" text-anchor="middle" fill="#666" font-size="11px">49% foreign economic rights</text>
+    
+    <rect x="300" y="250" width="200" height="60" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="400" y="270" text-anchor="middle" fill="#0B0B0B" font-weight="600">Thai OpCo Ltd</text>
+    <text x="400" y="285" text-anchor="middle" fill="#666" font-size="11px">(separate per property)</text>
+    <text x="400" y="300" text-anchor="middle" fill="#666" font-size="11px">49% foreign economic rights</text>
+    
+    <rect x="550" y="250" width="200" height="60" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="650" y="270" text-anchor="middle" fill="#0B0B0B" font-weight="600">Thai OpCo Ltd</text>
+    <text x="650" y="285" text-anchor="middle" fill="#666" font-size="11px">(separate per property)</text>
+    <text x="650" y="300" text-anchor="middle" fill="#666" font-size="11px">49% foreign economic rights</text>
+    
+    <!-- Properties -->
+    <path d="M150 310 L150 340" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="75" y="340" width="150" height="40" rx="4" fill="#f8f9fa" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="150" y="360" text-anchor="middle" fill="#0B0B0B" font-weight="600" font-size="12px">Owns Property 1</text>
+    
+    <path d="M400 310 L400 340" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="325" y="340" width="150" height="40" rx="4" fill="#f8f9fa" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="400" y="360" text-anchor="middle" fill="#0B0B0B" font-weight="600" font-size="12px">Owns Property 2</text>
+    
+    <path d="M650 310 L650 340" stroke="#0B0B0B" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="575" y="340" width="150" height="40" rx="4" fill="#f8f9fa" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="650" y="360" text-anchor="middle" fill="#0B0B0B" font-weight="600" font-size="12px">Owns Property 3</text>
+    
+    <!-- Management Co -->
+    <rect x="300" y="420" width="200" height="40" rx="4" fill="#ffffff" stroke="#E8E8E8" stroke-width="2" stroke-dasharray="4"/>
+    <text x="400" y="440" text-anchor="middle" fill="#0B0B0B" font-weight="600" font-size="12px">Thai Management Co</text>
+    <text x="400" y="452" text-anchor="middle" fill="#666" font-size="10px">(ops, rentals, reporting)</text>
+    <path d="M400 420 L400 380" stroke="#0B0B0B" stroke-width="1" stroke-dasharray="4"/>
+    <path d="M300 430 L150 380" stroke="#0B0B0B" stroke-width="1" stroke-dasharray="4"/>
+    <path d="M500 430 L650 380" stroke="#0B0B0B" stroke-width="1" stroke-dasharray="4"/>
+    
+    <!-- Legend/Side notes -->
+    <rect x="580" y="70" width="200" height="70" fill="none"/>
+    <text x="580" y="85" fill="#666" font-size="11px">• Preferred Shares (control)</text>
+    <text x="580" y="100" fill="#666" font-size="11px">• Shareholder Loans</text>
+    <text x="580" y="115" fill="#666" font-size="11px">• Contracts (governance)</text>
+    <path d="M550 115 L570 115" stroke="#ccc" stroke-dasharray="2"/>
+</g>
+<defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse">
+        <path d="M0 0 L6 3 L0 6 z" fill="#0B0B0B"/>
+    </marker>
+</defs>
+</svg>`;
+                 var div = document.createElement('div');
+                 div.innerHTML = svgChart;
+                 if (img.parentNode && img.parentNode.nodeName === 'DIV') {
+                     img.parentNode.appendChild(div);
+                     img.style.display = 'none';
+                 }
+               }
+             });
+         }
+      });
+    }, 1000);
+
     // ========================================
     // 6. FIX LINKS
     // ========================================
