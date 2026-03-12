@@ -270,7 +270,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
         }
       }
       
-      // "Find spaces that feel like home" → "Discover world class investment opportunities"
+      // "Find spaces that feel like home" → "Investment Opportunities"
       if (fullText.match(/Find\s*spaces\s*that\s*feel\s*like\s*home/i) && !h2.dataset.siamReplaced) {
         h2.dataset.siamReplaced = '1';
         h2.style.position = 'relative';
@@ -279,7 +279,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
           var overlay = document.createElement('span');
           overlay.className = 'siam-h2-overlay';
           overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;visibility:visible;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;font-family:inherit;white-space:normal;word-break:normal;';
-          overlay.textContent = 'Discover world class investment opportunities';
+          overlay.textContent = 'Investment Opportunities';
           h2.appendChild(overlay);
         }
       }
@@ -571,6 +571,183 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     // ========================================
     // 16. ARTICLE AND STRUCTURE DEEP OVERRIDES
     // ========================================
+    // ========================================
+    // PERFORMANCE: remove SVG diagram injection from setInterval (avoid scroll lag)
+    // Diagram is injected once on about/structure page load only
+    // ========================================
+    (function injectStructureDiagramOnce() {
+      var path = window.location.pathname;
+      if (path.indexOf('about') === -1 && path.indexOf('structure') === -1) return;
+      if (document.getElementById('siam-structure-diagram-injected')) return;
+
+      // Remove ALL existing SVG diagrams injected previously (cleanup)
+      document.querySelectorAll('[data-siam-chart]').forEach(function(el) { if(el.parentNode) el.parentNode.removeChild(el); });
+
+      // Find the hero section (first large image or first h1 section)
+      // We inject ONE diagram after the hero intro section
+      function doInject() {
+        if (document.getElementById('siam-structure-diagram-injected')) return;
+        var heroSection = null;
+        // Look for the intro/hero wrapper on the about page
+        document.querySelectorAll('[class*="framer-"]').forEach(function(el) {
+          var t = (el.textContent || '').trim();
+          if (!heroSection && (t.indexOf('Investment Structure') !== -1 || t.indexOf('Fund Structure') !== -1 || t.indexOf('Guiding you home') !== -1) && el.offsetHeight > 100) {
+            heroSection = el;
+          }
+        });
+
+        // Hide ALL images on the about/structure page (we replace with one clean diagram)
+        document.querySelectorAll('img').forEach(function(img) {
+          if (!img.dataset.siamHiddenOnStructure) {
+            img.dataset.siamHiddenOnStructure = '1';
+            img.style.display = 'none';
+          }
+        });
+
+        // Create diagram wrapper — transparent background matching site
+        var diagramWrapper = document.createElement('div');
+        diagramWrapper.id = 'siam-structure-diagram-injected';
+        diagramWrapper.style.cssText = 'width:100%;max-width:900px;margin:64px auto;padding:0 32px;';
+        diagramWrapper.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="auto" style="background:transparent;display:block;">
+<g style="font-family:'Geist','Inter',sans-serif;font-size:14px;">
+  <!-- Foreign Investor -->
+  <rect x="300" y="10" width="200" height="44" rx="6" fill="#EDEDE9" stroke="#ccc" stroke-width="1.5"/>
+  <text x="400" y="36" text-anchor="middle" fill="#191919" font-size="14" font-weight="600">Foreign Investor</text>
+  <line x1="400" y1="54" x2="400" y2="86" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Dutch BV -->
+  <rect x="250" y="88" width="300" height="52" rx="6" fill="#EDEDE9" stroke="#ccc" stroke-width="1.5"/>
+  <text x="400" y="110" text-anchor="middle" fill="#191919" font-size="14" font-weight="600">Dutch BV Holding Company</text>
+  <text x="400" y="130" text-anchor="middle" fill="#666" font-size="12">(Netherlands)</text>
+  <line x1="400" y1="140" x2="400" y2="172" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Thai Partner -->
+  <rect x="250" y="174" width="300" height="52" rx="6" fill="#EDEDE9" stroke="#ccc" stroke-width="1.5"/>
+  <text x="400" y="196" text-anchor="middle" fill="#191919" font-size="14" font-weight="600">Thai Partner Entity</text>
+  <text x="400" y="214" text-anchor="middle" fill="#666" font-size="12">(Legitimate 51% Thai ownership)</text>
+
+  <!-- Three arrows down to OpCos -->
+  <path d="M400 226 L170 258" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M400 226 L400 258" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M400 226 L630 258" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- OpCo 1 -->
+  <rect x="60" y="260" width="220" height="62" rx="6" fill="#F5F4F0" stroke="#ccc" stroke-width="1.5"/>
+  <text x="170" y="282" text-anchor="middle" fill="#191919" font-size="13" font-weight="600">Thai OpCo Ltd</text>
+  <text x="170" y="298" text-anchor="middle" fill="#666" font-size="11">(separate per property)</text>
+  <text x="170" y="314" text-anchor="middle" fill="#666" font-size="11">49% foreign economic rights</text>
+
+  <!-- OpCo 2 -->
+  <rect x="290" y="260" width="220" height="62" rx="6" fill="#F5F4F0" stroke="#ccc" stroke-width="1.5"/>
+  <text x="400" y="282" text-anchor="middle" fill="#191919" font-size="13" font-weight="600">Thai OpCo Ltd</text>
+  <text x="400" y="298" text-anchor="middle" fill="#666" font-size="11">(separate per property)</text>
+  <text x="400" y="314" text-anchor="middle" fill="#666" font-size="11">49% foreign economic rights</text>
+
+  <!-- OpCo 3 -->
+  <rect x="520" y="260" width="220" height="62" rx="6" fill="#F5F4F0" stroke="#ccc" stroke-width="1.5"/>
+  <text x="630" y="282" text-anchor="middle" fill="#191919" font-size="13" font-weight="600">Thai OpCo Ltd</text>
+  <text x="630" y="298" text-anchor="middle" fill="#666" font-size="11">(separate per property)</text>
+  <text x="630" y="314" text-anchor="middle" fill="#666" font-size="11">49% foreign economic rights</text>
+
+  <!-- Properties -->
+  <line x1="170" y1="322" x2="170" y2="352" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="95" y="354" width="150" height="38" rx="4" fill="#EDEDE9" stroke="#ccc" stroke-width="1"/>
+  <text x="170" y="376" text-anchor="middle" fill="#191919" font-size="12" font-weight="600">Property 1</text>
+
+  <line x1="400" y1="322" x2="400" y2="352" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="325" y="354" width="150" height="38" rx="4" fill="#EDEDE9" stroke="#ccc" stroke-width="1"/>
+  <text x="400" y="376" text-anchor="middle" fill="#191919" font-size="12" font-weight="600">Property 2</text>
+
+  <line x1="630" y1="322" x2="630" y2="352" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="555" y="354" width="150" height="38" rx="4" fill="#EDEDE9" stroke="#ccc" stroke-width="1"/>
+  <text x="630" y="376" text-anchor="middle" fill="#191919" font-size="12" font-weight="600">Property 3</text>
+
+  <!-- Mgmt Co dashed -->
+  <rect x="300" y="414" width="200" height="40" rx="4" fill="transparent" stroke="#aaa" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="400" y="433" text-anchor="middle" fill="#888" font-size="12" font-weight="600">Thai Management Co</text>
+  <text x="400" y="448" text-anchor="middle" fill="#aaa" font-size="10">(ops, rentals, reporting)</text>
+
+  <!-- Legend -->
+  <text x="572" y="102" fill="#666" font-size="11">• Preferred Shares (control)</text>
+  <text x="572" y="118" fill="#666" font-size="11">• Shareholder Loans</text>
+  <text x="572" y="134" fill="#666" font-size="11">• Contracts (governance)</text>
+</g>
+<defs>
+  <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse">
+    <path d="M0 0 L6 3 L0 6 z" fill="#555"/>
+  </marker>
+</defs>
+</svg>`;
+
+        // Insert after hero section if found, otherwise insert at top of main content
+        var insertTarget = document.querySelector('.framer-nIJeD .framer-106tf9r') ||
+                           document.querySelector('[class*="framer-106tf9r"]') ||
+                           document.body.querySelector('main') ||
+                           document.body;
+        if (insertTarget && insertTarget !== document.body) {
+          insertTarget.parentNode.insertBefore(diagramWrapper, insertTarget.nextSibling);
+        } else {
+          // Fallback: insert after first framer content block
+          var firstBlock = document.querySelector('[class*="framer-Nsl95"] [class*="framer-23bc3u"]');
+          if (firstBlock) firstBlock.parentNode.insertBefore(diagramWrapper, firstBlock.nextSibling);
+        }
+      }
+
+      setTimeout(doInject, 800);
+    })();
+
+    // ========================================
+    // FORM BG FIX — Remove diagram from contact form background
+    // ========================================
+    (function fixContactFormBg() {
+      if (document.getElementById('siam-form-bg-fixed')) return;
+      var style = document.createElement('style');
+      style.id = 'siam-form-bg-fixed';
+      // The contact form section uses framer-F02Rx and framer-dvCar
+      // The injected diagram SVG wrapper gets a z-index fix so it stays BEHIND form
+      // Also hide any SVGs that ended up inside the contact section
+      style.textContent = [
+        '.framer-F02Rx svg, .framer-dvCar svg { display: none !important; }',
+        '.framer-F02Rx [data-siam-chart], .framer-dvCar [data-siam-chart] { display: none !important; }',
+        '#siam-structure-diagram-injected { position: relative; z-index: 0; }',
+        // Ensure contact background is clean (dark section should keep its bg)
+        '.framer-F02Rx .framer-12s1wt1 { z-index: 1 !important; }',
+      ].join('\n');
+      document.head.appendChild(style);
+    })();
+
+    // ========================================
+    // TEAM SECTION HIDE — Remove "Team of experts" section aggressively
+    // ========================================
+    (function hideTeamSection() {
+      var teamKeywords = [
+        'Team of experts', 'team of experts', 'TEAM OF EXPERTS',
+        'Meet the team', 'MEET THE TEAM', 'OUR TEAM',
+        'Ethan Walker', 'Caleb Richardson', 'Marcus Shaw',
+        'This could be you', 'CAREERS', 'Open positions'
+      ];
+      document.querySelectorAll('[class*="framer-"]').forEach(function(el) {
+        if (el.dataset.siamTeamChecked) return;
+        el.dataset.siamTeamChecked = '1';
+        var t = (el.textContent || '').trim();
+        for (var i = 0; i < teamKeywords.length; i++) {
+          if (t.indexOf(teamKeywords[i]) !== -1 && el.offsetHeight > 80 && el.offsetHeight < 3000) {
+            // Check it's not a huge page wrapper
+            var descendantsWithKeyword = el.querySelectorAll('[class*="framer-"]');
+            // Find the smallest framer container that has the keyword
+            var allMatch = [];
+            descendantsWithKeyword.forEach(function(d) {
+              if ((d.textContent||'').indexOf(teamKeywords[i]) !== -1) allMatch.push(d);
+            });
+            if (allMatch.length === 0) {
+              el.style.display = 'none';
+            }
+            break;
+          }
+        }
+      });
+    })();
+
     var subMap = [
       // Article 1
       ["Foreign investors like Thailand for lifestyle and yields", "Foreign investors like Thailand for lifestyle and yields\u2014but many hesitate because ownership rules feel opaque, and \u201Cworkarounds\u201D can create hidden legal risk.\n\nHere are the only questions that matter at the start:\n\nHave you bought a unit title, or have you bought a structure?\nIf you\u2019re buying a condominium unit in your own name, you are usually relying on the foreign ownership quota mechanics (commonly referred to as the 49% rule). If the quota is full, your \u201Cdeal\u201D may not actually be transferable to you as foreign freehold\u2014no matter what the sales pitch says.\n\nIf you\u2019re buying land or villas, who holds the title deed?\nForeign individuals generally do not buy land directly. Many investors then hear, \u201CJust use a Thai company.\u201D This is where risk splits into two paths:\n\nPath A: compliant Thai partner (substance).\nA Thai majority partner is a real investor, with real capital at risk, real rights, and a traceable return profile.\n\nPath B: nominee shareholders (form, not substance).\nThis is where Thai shareholders are placeholders to allow effective foreign control, without real capital or economic participation. It is illegal, and enforcement focus has increased\u2014especially in tourism and property-heavy provinces.\n\nRecent public reporting and professional commentary have highlighted multi-agency activity and heightened scrutiny of nominee patterns\u2014particularly in real estate and hospitality-linked structures.\n\nWhat we do differently: a partner model designed to survive scrutiny\nOur fund is built around a simple premise: if a structure cannot withstand \u201Csubstance over form\u201D scrutiny, it is not investable.\n\nWe implement:\n\nA Thai partner entity with genuine economics (not paper nominees).\nOne operating company (SPV) per deal to ring-fence risks.\nA Dutch holding company for investor onboarding and consolidated governance.\nContractual rights that are explicit, readable, and enforceable (not \u201Chandshake assurances\u201D).\n\nYour pre-investment checklist\nBefore you invest in any Thailand deal\u2014fund or direct\u2014ask for the following in writing:\n\nWhat exactly is owned (unit title deed, land title deed, or company shares)?\nIf corporate: who holds the shares, and what proof exists of real shareholder funding?\nWhat documents prove compliance around remittance and transfer formalities?\nWhat is the rental strategy, and is it legally compliant for the property type?\nWhat is the true exit path: market sale, structured liquidity, or \u201Cbest effort\u201D?\n\nBottom line\nThailand is investable, but only if you refuse \u201Cshortcuts\u201D and insist on a transparent structure, clean documentation, and commercial realism on liquidity."],
@@ -702,14 +879,20 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     }, 1000);
 
     // ========================================
-    // 6. FIX LINKS
+    // 6. FIX LINKS + URL REDIRECTS
     // ========================================
+    // Redirect /blog → /insights, /about-us → /structure
+    (function() {
+      var path = window.location.pathname;
+      if (path === '/blog' || path === '/blog/') { history.replaceState(null,'','/insights'); }
+      if (path === '/about-us' || path === '/about-us/') { history.replaceState(null,'','/structure'); }
+    })();
     document.querySelectorAll('a').forEach(function(a) {
       var href = a.getAttribute('href');
       if (!href) return;
       if (href.match(/\.?\/?properties\/?$/)) a.setAttribute('href','#deals');
-      if (href.match(/\.?\/?blog\/?$/)) a.setAttribute('href','#insights');
-      if (href.match(/\.?\/?about-us\/?$/)) a.setAttribute('href','#structure');
+      if (href.match(/blog|\/?blog\/?$/)) a.setAttribute('href','#insights');
+      if (href.match(/about-us|\/?about\/?$/)) a.setAttribute('href','#structure');
       if (href.match(/\.?\/?contact\/?$/)) a.setAttribute('href','#contact');
     });
     
@@ -1056,47 +1239,15 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     }
     
     // ========================================
-    // 16. STRUCTURE/ABOUT PAGE — Hide Team + Careers
+    // 16. STRUCTURE/ABOUT PAGE — Heading override
     // ========================================
-    if (window.location.pathname.indexOf('/about') !== -1) {
-      // Replace page heading
+    if (window.location.pathname.indexOf('/about') !== -1 || window.location.pathname.indexOf('/structure') !== -1) {
       document.querySelectorAll('h1, h2').forEach(function(el) {
         var t = (el.textContent||'').trim().replace(/\s+/g, ' ');
         if (t.match(/Guiding\s*you\s*home\s*with\s*confidence/i)) {
           el.textContent = 'Investment Structure & Governance';
         }
       });
-      
-      // Hide team members and careers sections
-      var hideKeywords = ['MEET THE TEAM', 'Meet the team', 'OUR TEAM', 'Team of experts', 'team of experts', 'CAREERS', 'Careers', 'Open positions', 'This could be you'];
-      document.querySelectorAll('section, div, [class*="framer-"]').forEach(function(el) {
-        var t = (el.textContent||'').trim();
-        for (var h = 0; h < hideKeywords.length; h++) {
-          if (t.indexOf(hideKeywords[h]) !== -1 && el.children.length > 0) {
-            // Only hide the smallest container that has this text
-            var isSmallest = true;
-            el.querySelectorAll('section, div, [class*="framer-"]').forEach(function(child) {
-              if (child !== el && (child.textContent||'').indexOf(hideKeywords[h]) !== -1 && child.children.length > 1) {
-                isSmallest = false;
-              }
-            });
-            // Hide sections that contain team member names or careers
-            if (t.indexOf('Ethan Walker') !== -1 || t.indexOf('Caleb Richardson') !== -1 || t.indexOf('Marcus Shaw') !== -1 || t.indexOf('This could be you') !== -1) {
-              if (el.offsetHeight > 200) {
-                el.style.display = 'none';
-              }
-            }
-          }
-        }
-      });
-      
-      // More targeted: hide elements with specific team/career text
-      if (!document.getElementById('siam-hide-team-css')) {
-        var teamCSS = document.createElement('style');
-        teamCSS.id = 'siam-hide-team-css';
-        teamCSS.textContent = '';
-        document.head.appendChild(teamCSS);
-      }
     }
     
     // ========================================
