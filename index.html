@@ -12,8 +12,8 @@
     <!-- End of headStart -->
 	<meta name="viewport" content="width=device-width">
 	<meta name="generator" content="Framer 747ab96">
-	<title>Siam Real Estate Fund | Your Trusted Investment Partner in Thailand</title>
-    <meta name="description" content="Siam Real Estate Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
+	<title>Siam Preferred Property Fund | Your Trusted Investment Partner in Thailand</title>
+    <meta name="description" content="Siam Preferred Property Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
     <meta name="framer-search-index" content="https://framerusercontent.com/sites/7vaKck8mKWsOcVboVwCgpZ/searchIndex-oflXq8TkyOxE.json">
     <meta name="framer-search-index-fallback" content="https://framerusercontent.com/sites/7vaKck8mKWsOcVboVwCgpZ/searchIndex-NqZl2g3NJCVy.json">
     <link href="https://framerusercontent.com/images/iV69kFRBN1zKeMnl7TWVzyo7yk.png" rel="icon" media="(prefers-color-scheme: light)">
@@ -21,13 +21,13 @@
     <link rel="apple-touch-icon" href="https://framerusercontent.com/images/Ywq5K0FDOBrYRZeww3rtV16rCQ.png">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Siam Real Estate Fund | Your Trusted Investment Partner in Thailand">
-    <meta property="og:description" content="Siam Real Estate Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
+    <meta property="og:title" content="Siam Preferred Property Fund | Your Trusted Investment Partner in Thailand">
+    <meta property="og:description" content="Siam Preferred Property Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
     <meta property="og:image" content="https://framerusercontent.com/images/9Tdzt7lQdBnThnKlo6nJcozMllo.png">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Siam Real Estate Fund | Your Trusted Investment Partner in Thailand">
-    <meta name="twitter:description" content="Siam Real Estate Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
+    <meta name="twitter:title" content="Siam Preferred Property Fund | Your Trusted Investment Partner in Thailand">
+    <meta name="twitter:description" content="Siam Preferred Property Fund — institutional-grade real estate investment structuring for foreign capital in Thailand. Per-deal SPVs, compliance-first operations, and transparent governance.">
     <meta name="twitter:image" content="https://framerusercontent.com/images/9Tdzt7lQdBnThnKlo6nJcozMllo.png">
 	
 	<style data-framer-font-css>/* cyrillic-ext */
@@ -164,7 +164,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     // 1. SAFE EXACT REPLACEMENTS
     // ========================================
     var safeExactMap = {
-      "Habitura": "Siam Real Estate Fund",
+      "Habitura": "Siam Preferred Property Fund",
       "Properties": "Deals",
       "Blog": "Insights",
       "About us": "Structure",
@@ -278,7 +278,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
         if (!h2.querySelector('.siam-h2-overlay')) {
           var overlay = document.createElement('span');
           overlay.className = 'siam-h2-overlay';
-          overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;visibility:visible;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;font-family:inherit;';
+          overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;visibility:visible;font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;font-family:inherit;white-space:normal;word-break:normal;';
           overlay.textContent = 'Discover world class investment opportunities';
           h2.appendChild(overlay);
         }
@@ -402,13 +402,14 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
     var priceMap = {
       "$1,250,000":"$1,800,000","$8,500,000":"$30,000,000","$2,700,000":"$4,000,000",
       "$3,200,000":"$5,000,000","$985,000":"$1,800,000","$4,250,000":"$30,000,000",
-      "$1,850,000":"$4,000,000","$2,150,000":"$5,000,000","$795,000":"$1,800,000","$920,000":"$30,000,000"
+      "$1,850,000":"$4,000,000","$2,150,000":"$5,000,000","$795,000":"$1,800,000","$920,000":"$30,000,000",
+      "$1,480,000":"$4,000,000","$685,000":"$5,000,000","$1,380,000":"$4,000,000","$575,000":"$5,000,000"
     };
     var cardData = [
-      {title:"Koh Phangan, Thailand",detail:"35-villa resort \u2022 6,000 m\u00B2 land"},
-      {title:"Samui, Thailand",detail:"120 keys resort \u2022 50,000 m\u00B2 land"},
-      {title:"Phuket, Thailand",detail:"13 villas \u2022 88 units \u2022 80 keys hotel"},
-      {title:"Koh Phangan, Thailand",detail:"30 villas \u2022 10,000 m\u00B2 land"}
+      {title:"Koh Phangan, Thailand",line1:"35-villa resort",line2:"6,000 m\u00B2 land"},
+      {title:"Samui, Thailand",line1:"Large hospitality development",line2:"120 keys resort \u2022 50,000 m\u00B2 land"},
+      {title:"Phuket, Thailand",line1:"Revive \u2014 Global Longevity Sanctuary",line2:"13 villas \u2022 88 standalone units \u2022 80 keys hotel"},
+      {title:"Koh Phangan, Thailand",line1:"30 villas",line2:"10,000 m\u00B2 land"}
     ];
     var cardIdx = 0;
     walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
@@ -422,11 +423,75 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
       if (val.match(/^Los\s+Angeles/i)||val.match(/^(?:Beverly|Brentwood|Hollywood)/i)||val.match(/,\s*CA\s+\d{5}/)) {
         if (cardIdx < cardData.length) { node.nodeValue = ''; cardIdx++; }
       }
-      if (val.match(/\d+\s+Beds?,\s*\d+\s+Baths?,\s*[\d,]+\s+Sq/i)) {
-        if (cardIdx > 0 && cardIdx <= cardData.length) node.nodeValue = cardData[cardIdx-1].detail;
-      }
       if (priceMap[val]) node.nodeValue = priceMap[val];
     }
+    
+    // ========================================
+    // 5b. DEAL CARD SPECS — Framer splits "5 Beds, 3 Baths, 1,400 Sq. Ft." into
+    //     6 separate div>p nodes in a flex container. Strategy: find the flex
+    //     container that holds "Beds," as a child text node, hide its contents,
+    //     inject overlay spans with correct deal info.
+    // ========================================
+    function replaceBedsBaths() {
+      // The 4 deal specs in order (matched by deal position based on nearest title)
+      var dealTitles = ['Koh Phangan', 'Samui', 'Phuket', 'Koh Phangan'];
+      var dealLine1 = ['35-villa resort','Large hospitality development','Revive \u2014 Global Longevity Sanctuary','30 villas'];
+      var dealLine2 = ['6,000 m\u00B2 land','120 keys resort \u2022 50,000 m\u00B2 land','13 villas \u2022 88 standalone units \u2022 80 keys hotel','10,000 m\u00B2 land'];
+      
+      // Find all text nodes that are exactly "Beds," (Framer splits the text)
+      var bedsNodes = [];
+      var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var tn;
+      while (tn = tw.nextNode()) {
+        if ((tn.nodeValue||'').trim() === 'Beds,') {
+          bedsNodes.push(tn);
+        }
+      }
+      
+      bedsNodes.forEach(function(bedsNode, idx) {
+        if (idx >= 4) return;
+        // Walk up to find the flex container (grandparent of the p>Beds, chain)
+        // Structure: flexContainer > [div>p "5", div>p "Beds,", div>p "3", ...]
+        var p = bedsNode.parentElement; // <p>
+        if (!p) return;
+        var pWrapper = p.parentElement; // <div> wrapping <p>Beds,</p>
+        if (!pWrapper) return;
+        var flexContainer = pWrapper.parentElement; // <div> with 6 children
+        if (!flexContainer) return;
+        
+        // Don't process twice
+        if (flexContainer.dataset.siamBedsReplaced) return;
+        flexContainer.dataset.siamBedsReplaced = '1';
+        
+        // Switch the flex container from row to column so our spans stack vertically
+        flexContainer.style.flexDirection = 'column';
+        flexContainer.style.gap = '2px';
+        
+        // Hide all children of the flex container
+        Array.from(flexContainer.children).forEach(function(child) {
+          child.style.display = 'none';
+        });
+        
+        // Inject our replacement spans
+        var span1 = document.createElement('span');
+        span1.className = 'siam-deal-line1';
+        span1.textContent = dealLine1[idx];
+        span1.style.cssText = 'display:block;font-size:inherit;color:inherit;font-family:inherit;font-weight:inherit;line-height:1.4;white-space:nowrap;';
+        
+        var span2 = document.createElement('span');
+        span2.className = 'siam-deal-line2';
+        span2.textContent = dealLine2[idx];
+        span2.style.cssText = 'display:block;font-size:inherit;color:inherit;font-family:inherit;font-weight:inherit;line-height:1.4;white-space:nowrap;';
+        
+        flexContainer.appendChild(span1);
+        flexContainer.appendChild(span2);
+      });
+    }
+    replaceBedsBaths();
+    // Re-run after a delay in case Framer re-hydrates
+    setTimeout(replaceBedsBaths, 300);
+    setTimeout(replaceBedsBaths, 800);
+    setTimeout(replaceBedsBaths, 2000);
     
     // ========================================
     // 6. FIX LINKS
@@ -480,7 +545,7 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
       var cleanFooter = document.createElement('footer');
       cleanFooter.id = 'siam-clean-footer';
       cleanFooter.style.cssText = 'background:#f5f5f3;padding:64px 32px 32px;font-family:"Geist","Geist Placeholder",sans-serif;';
-      cleanFooter.innerHTML = '<div style="max-width:1200px;margin:0 auto;"><div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:48px;"><div style="max-width:400px;"><h3 style="font-size:20px;font-weight:600;color:#191919;margin:0 0 16px;">Siam Real Estate Fund</h3><p style="font-size:13px;color:#707070;line-height:1.6;margin:0;">Disclaimer: This website is for information purposes only and does not constitute an offer, solicitation, or recommendation. Investments involve risk, including loss of capital and illiquidity. Terms are deal-specific and subject to final documentation and KYC/AML.</p></div><div style="display:flex;gap:48px;flex-wrap:wrap;"><div><p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#191919;margin:0 0 12px;">Navigate</p><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Home</a><a href="#deals" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Deals</a><a href="#insights" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Insights</a><a href="#structure" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Structure</a><a href="#contact" style="display:block;font-size:13px;color:#707070;text-decoration:none;">Contact</a></div><div><p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#191919;margin:0 0 12px;">Legal</p><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Privacy Policy</a><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;">Terms of Service</a></div></div></div><div style="border-top:1px solid #ddd;padding-top:24px;"><p style="font-family:\'Geist Mono\',monospace;font-size:11px;color:#999;line-height:1.6;margin:0;">Key legal/tax references: Thai Civil & Commercial Code (lease term cap and assignment rules), Thai Revenue Department withholding guidance, Dutch\u2013Thailand treaty status, and Thai SEC REIT disclosure standards.</p><p style="font-family:\'Geist Mono\',monospace;font-size:11px;color:#999;margin:8px 0 0;">\u00A9 2025 Siam Real Estate Fund. All rights reserved.</p></div></div>';
+      cleanFooter.innerHTML = '<div style="max-width:1200px;margin:0 auto;"><div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:48px;"><div style="max-width:400px;"><h3 style="font-size:20px;font-weight:600;color:#191919;margin:0 0 16px;">Siam Real Estate Fund</h3><p style="font-size:13px;color:#707070;line-height:1.6;margin:0;">Disclaimer: This website is for information purposes only and does not constitute an offer, solicitation, or recommendation. Investments involve risk, including loss of capital and illiquidity. Terms are deal-specific and subject to final documentation and KYC/AML.</p></div><div style="display:flex;gap:48px;flex-wrap:wrap;"><div><p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#191919;margin:0 0 12px;">Navigate</p><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Home</a><a href="#deals" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Deals</a><a href="#insights" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Insights</a><a href="#structure" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Structure</a><a href="#contact" style="display:block;font-size:13px;color:#707070;text-decoration:none;">Contact</a></div><div><p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#191919;margin:0 0 12px;">Legal</p><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;margin-bottom:8px;">Privacy Policy</a><a href="#" style="display:block;font-size:13px;color:#707070;text-decoration:none;">Terms of Service</a></div></div></div><div style="border-top:1px solid #ddd;padding-top:24px;"><p style="font-family:\'Geist Mono\',monospace;font-size:11px;color:#999;line-height:1.6;margin:0;">Key legal/tax references: Thai Civil & Commercial Code (lease term cap and assignment rules), Thai Revenue Department withholding guidance, Dutch\u2013Thailand treaty status, and Thai SEC REIT disclosure standards.</p><p style="font-family:\'Geist Mono\',monospace;font-size:11px;color:#999;margin:8px 0 0;">\u00A9 2025 Siam Preferred Property Fund. All rights reserved.</p></div></div>';
       origFooter.parentNode.insertBefore(cleanFooter, origFooter.nextSibling);
     }
     var oldLegal = document.getElementById('siam-legal-refs');
@@ -536,6 +601,317 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
         if (t) t.scrollIntoView({behavior:'smooth',block:'start'});
       });
     });
+    
+    // ========================================
+    // 13. BROWSER TITLE OVERRIDE
+    // ========================================
+    document.title = 'Siam Preferred Property Fund | Your Trusted Investment Partner in Thailand';
+    
+    // ========================================
+    // 13b. FORM INTERCEPT — Framer uses div-based form (no <form> tag)
+    //      Intercept the submit button click + hide Framer error messages
+    // ========================================
+    if (!document.getElementById('siam-form-intercepted')) {
+      // Hide Framer error messages via CSS
+      var formStyle = document.createElement('style');
+      formStyle.id = 'siam-form-intercepted';
+      formStyle.textContent = [
+        '[data-framer-form-error] { display: none !important; }',
+        '[class*="framer-form-error"] { display: none !important; }',
+        // Any element showing "Something went wrong"
+        '.siam-hide-error { display: none !important; }'
+      ].join('\n');
+      document.head.appendChild(formStyle);
+      
+      // Hide "Something went wrong" text nodes dynamically
+      var errorWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      var errNode;
+      while (errNode = errorWalker.nextNode()) {
+        if (errNode.nodeValue && errNode.nodeValue.indexOf('Something went wrong') !== -1) {
+          if (errNode.parentElement) errNode.parentElement.style.display = 'none';
+        }
+      }
+    }
+    
+    // Intercept submit button click (Framer has no <form> tag)
+    document.querySelectorAll('button, [role="button"], h4, p').forEach(function(el) {
+      var t = (el.textContent||'').trim();
+      if (t === 'Request investor pack' && !el.dataset.siamFormHooked) {
+        el.dataset.siamFormHooked = '1';
+        var clickTarget = el.closest('a, button, [data-framer-component-type]') || el;
+        clickTarget.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          
+          // Gather inputs from the surrounding contact section
+          var section = clickTarget.closest('[class*="framer-"]');
+          var inputs = document.querySelectorAll('input[type="text"], input[type="email"], input:not([type]), textarea');
+          var formData = {};
+          inputs.forEach(function(inp) {
+            var label = inp.getAttribute('placeholder') || inp.getAttribute('name') || 'field';
+            if (inp.value) formData[label] = inp.value;
+          });
+          
+          // Open mailto
+          var subject = encodeURIComponent('Investor Pack Request \u2014 Siam Preferred Property Fund');
+          var bodyLines = ['New investor pack request received:', ''];
+          Object.keys(formData).forEach(function(k) { bodyLines.push(k + ': ' + formData[k]); });
+          bodyLines.push('', 'Sent from siam-preferred-property-fund.vercel.app');
+          var body = encodeURIComponent(bodyLines.join('\n'));
+          window.open('mailto:info@chargedventures.io?subject=' + subject + '&body=' + body, '_blank');
+          
+          // Show success toast
+          var existingToast = document.getElementById('siam-success-toast');
+          if (existingToast) existingToast.remove();
+          var toast = document.createElement('div');
+          toast.id = 'siam-success-toast';
+          toast.style.cssText = 'position:fixed;top:24px;right:24px;z-index:999999;background:#111;color:#f5f4f0;padding:20px 28px;border-radius:12px;font-family:"Geist","Geist Placeholder",sans-serif;font-size:15px;font-weight:500;box-shadow:0 8px 40px rgba(0,0,0,0.4);transform:translateY(-20px);opacity:0;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);max-width:380px;line-height:1.4;';
+          toast.innerHTML = '<div style="display:flex;align-items:flex-start;gap:14px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><div><div style="margin-bottom:6px;font-size:15px;">Request sent \u2014 thank you</div><div style="font-size:12px;color:#aaa;font-weight:400;">Your investor pack request has been submitted to our team. We will reach out shortly via email.</div></div></div>';
+          document.body.appendChild(toast);
+          requestAnimationFrame(function() { requestAnimationFrame(function() {
+            toast.style.transform = 'translateY(0)'; toast.style.opacity = '1';
+          }); });
+          setTimeout(function() {
+            toast.style.transform = 'translateY(-20px)'; toast.style.opacity = '0';
+            setTimeout(function() { if (toast.parentNode) toast.remove(); }, 500);
+          }, 6000);
+          
+          // Hide any Framer error messages that appear
+          setTimeout(function() {
+            document.querySelectorAll('p, span, div').forEach(function(el2) {
+              if ((el2.textContent||'').trim() === 'Something went wrong') {
+                el2.style.display = 'none';
+              }
+            });
+          }, 500);
+          
+          // Clear fields
+          document.querySelectorAll('input[type="text"], input[type="email"], input:not([type]), textarea').forEach(function(inp) { inp.value = ''; });
+          
+          return false;
+        }, true);
+      }
+    });
+    
+    // ========================================
+    // 14. DEAL CARD LINE2 — Replace subtitle lines
+    // ========================================
+    (function() {
+      var dealPrices = ['$1,800,000', '$30,000,000', '$4,000,000', '$5,000,000'];
+      var dealLine2 = [
+        '6,000 m\u00B2 land',
+        '120 keys resort \u2022 50,000 m\u00B2 land',
+        '13 villas \u2022 88 standalone units \u2022 80 keys hotel',
+        '10,000 m\u00B2 land'
+      ];
+      // Find price elements and inject line2 below line1
+      document.querySelectorAll('p, span, div').forEach(function(el) {
+        var t = (el.textContent||'').trim();
+        for (var i = 0; i < dealPrices.length; i++) {
+          if (t === dealPrices[i] && !el.dataset.siamLine2) {
+            el.dataset.siamLine2 = '1';
+            // Find the parent card and look for the beds/baths text sibling
+            var card = el.closest('[class*="framer-"]');
+            if (!card) continue;
+            // Find elements in the card that show the line1 text
+            card.querySelectorAll('p, span').forEach(function(sub) {
+              var st = (sub.textContent||'').trim();
+              if (st === cardData[i].line1 && !sub.dataset.siamLine2Added) {
+                sub.dataset.siamLine2Added = '1';
+                // Check if line2 sibling already exists
+                var next = sub.nextElementSibling;
+                if (!next || next.textContent.trim() !== cardData[i].line2) {
+                  var line2El = document.createElement('p');
+                  line2El.style.cssText = 'font-size:inherit;color:inherit;font-family:inherit;margin:4px 0 0;line-height:1.4;';
+                  line2El.textContent = cardData[i].line2;
+                  sub.parentNode.insertBefore(line2El, sub.nextSibling);
+                }
+              }
+            });
+          }
+        }
+      });
+    })();
+    
+    // ========================================
+    // 15. DEAL DETAIL PAGES — Override content on property sub-pages
+    // ========================================
+    if (window.location.pathname.indexOf('/properties') !== -1 || window.location.pathname.indexOf('/property') !== -1) {
+      var dealDetails = [
+        {
+          titleMatch: /sunset/i,
+          title: 'Koh Phangan, Thailand — $1,800,000',
+          subtitle: '35-villa resort',
+          desc: 'A 35-villa boutique resort on 6,000 m² of tropical land in Koh Phangan. The development targets the luxury hospitality segment with full management services, nightly rates averaging $280-$450 USD, and projected stabilised yields of 8-12% p.a. Structured as a ring-fenced SPV with transparent cost reporting.',
+          specs: [
+            {label: 'Type', value: 'Resort / Hospitality'},
+            {label: 'Units', value: '35 villas'},
+            {label: 'Land', value: '6,000 m²'},
+            {label: 'Price', value: '$1,800,000'}
+          ]
+        },
+        {
+          titleMatch: /mulholland|canon|camden/i,
+          title: 'Samui, Thailand — $30,000,000',
+          subtitle: 'Large hospitality development',
+          desc: 'A large-scale 120-key hospitality development on 50,000 m² in Koh Samui. This flagship project targets luxury long-stay and resort tourism with world-class amenities, wellness facilities, and full hotel management. Projected stabilised RevPAR of $180-$320. Structured through a dedicated SPV with institutional-grade governance.',
+          specs: [
+            {label: 'Type', value: 'Large-scale hospitality'},
+            {label: 'Keys', value: '120 keys resort'},
+            {label: 'Land', value: '50,000 m²'},
+            {label: 'Price', value: '$30,000,000'}
+          ]
+        },
+        {
+          titleMatch: /la\s*(brea|cienega)/i,
+          title: 'Phuket, Thailand — $4,000,000',
+          subtitle: 'Revive — Global Longevity Sanctuary',
+          desc: 'Revive — a cutting-edge longevity and wellness sanctuary in Bang Tao, Phuket. The project combines 13 luxury wellness villas, 88 standalone residential units, and an 80-key boutique hotel with a full-service longevity clinic. Designed by world-class architects, the development integrates biophilic design, preventative health science, and five-star hospitality. Images for illustration purposes only.',
+          specs: [
+            {label: 'Type', value: 'Wellness / Longevity Sanctuary'},
+            {label: 'Villas', value: '13 wellness villas'},
+            {label: 'Units', value: '88 standalone + 80 keys hotel'},
+            {label: 'Price', value: '$4,000,000'}
+          ]
+        },
+        {
+          titleMatch: /silver|laurel|bundy/i,
+          title: 'Koh Phangan, Thailand — $5,000,000',
+          subtitle: '30 villas',
+          desc: 'A 30-villa residential development on 10,000 m² of prime land in Koh Phangan. The project targets the luxury villa market with individual pool villas, tropical landscaping, and proximity to key beaches. Each villa averages 120-180 m² built area. Structured as a Thai SPV with 49:51 foreign-to-Thai equity split and documented governance.',
+          specs: [
+            {label: 'Type', value: 'Residential / Villa'},
+            {label: 'Units', value: '30 villas'},
+            {label: 'Land', value: '10,000 m²'},
+            {label: 'Price', value: '$5,000,000'}
+          ]
+        }
+      ];
+      
+      var pathname = window.location.pathname.toLowerCase();
+      
+      // Override main heading, location, specs
+      document.querySelectorAll('h1, h2, h3, p, span').forEach(function(el) {
+        var t = (el.textContent||'').trim();
+        
+        // Replace LA addresses with deal titles
+        for (var d = 0; d < dealDetails.length; d++) {
+          if (dealDetails[d].titleMatch.test(t)) {
+            el.textContent = dealDetails[d].title;
+            el.dataset.siamDealReplaced = '1';
+            break;
+          }
+        }
+        
+        // Replace Los Angeles / CA references
+        if (t.match(/Los\s*Angeles/i) || t.match(/,\s*CA\s+\d{5}/i)) {
+          el.textContent = '';
+        }
+        
+        // Replace beds/baths
+        if (t.match(/\d+\s+Beds?/i)) {
+          for (var d = 0; d < dealDetails.length; d++) {
+            // Use parent context to determine which deal
+            var parentText = (el.closest('[class*="framer-"]')||document.body).textContent;
+            for (var d2 = 0; d2 < dealDetails.length; d2++) {
+              if (parentText.indexOf(dealDetails[d2].title) !== -1) {
+                el.textContent = dealDetails[d2].specs.map(function(s) { return s.label + ': ' + s.value; }).join(' | ');
+                break;
+              }
+            }
+            break;
+          }
+        }
+      });
+      
+      // Replace description paragraphs
+      document.querySelectorAll('p').forEach(function(p) {
+        var t = (p.textContent||'').trim();
+        if (t.length > 80 && (t.indexOf('neighborhood') !== -1 || t.indexOf('modern living') !== -1 || t.indexOf('property') !== -1 || t.indexOf('home') !== -1 || t.indexOf('listing') !== -1)) {
+          var parentText = (p.closest('[class*="framer-"]')||document.body).textContent;
+          for (var d = 0; d < dealDetails.length; d++) {
+            if (parentText.indexOf(dealDetails[d].title) !== -1) {
+              p.textContent = dealDetails[d].desc;
+              break;
+            }
+          }
+        }
+      });
+      
+      // Fix breadcrumb "PORPERTIES" → "DEALS" and "All properties" → "All deals"
+      document.querySelectorAll('p, span, a, div').forEach(function(el) {
+        var t = (el.textContent||'').trim();
+        if (t === 'PORPERTIES' || t === 'PROPERTIES') el.textContent = 'DEALS';
+        if (t === 'All properties') el.textContent = 'All deals';
+        if (t === 'Properties') el.textContent = 'Deals';
+      });
+    }
+    
+    // ========================================
+    // 16. STRUCTURE/ABOUT PAGE — Hide Team + Careers
+    // ========================================
+    if (window.location.pathname.indexOf('/about') !== -1) {
+      // Replace page heading
+      document.querySelectorAll('h1, h2').forEach(function(el) {
+        var t = (el.textContent||'').trim().replace(/\s+/g, ' ');
+        if (t.match(/Guiding\s*you\s*home\s*with\s*confidence/i)) {
+          el.textContent = 'Investment Structure & Governance';
+        }
+      });
+      
+      // Hide team members and careers sections
+      var hideKeywords = ['MEET THE TEAM', 'Meet the team', 'OUR TEAM', 'Team of experts', 'team of experts', 'CAREERS', 'Careers', 'Open positions', 'This could be you'];
+      document.querySelectorAll('section, div, [class*="framer-"]').forEach(function(el) {
+        var t = (el.textContent||'').trim();
+        for (var h = 0; h < hideKeywords.length; h++) {
+          if (t.indexOf(hideKeywords[h]) !== -1 && el.children.length > 0) {
+            // Only hide the smallest container that has this text
+            var isSmallest = true;
+            el.querySelectorAll('section, div, [class*="framer-"]').forEach(function(child) {
+              if (child !== el && (child.textContent||'').indexOf(hideKeywords[h]) !== -1 && child.children.length > 1) {
+                isSmallest = false;
+              }
+            });
+            // Hide sections that contain team member names or careers
+            if (t.indexOf('Ethan Walker') !== -1 || t.indexOf('Caleb Richardson') !== -1 || t.indexOf('Marcus Shaw') !== -1 || t.indexOf('This could be you') !== -1) {
+              if (el.offsetHeight > 200) {
+                el.style.display = 'none';
+              }
+            }
+          }
+        }
+      });
+      
+      // More targeted: hide elements with specific team/career text
+      if (!document.getElementById('siam-hide-team-css')) {
+        var teamCSS = document.createElement('style');
+        teamCSS.id = 'siam-hide-team-css';
+        teamCSS.textContent = '';
+        document.head.appendChild(teamCSS);
+      }
+    }
+    
+    // ========================================
+    // 17. PROPERTIES COLLECTION PAGE — Fix PORPERTIES typo + branding
+    // ========================================
+    if (window.location.pathname === '/properties' || window.location.pathname === '/properties/') {
+      document.querySelectorAll('p, span, a, div, h1, h2').forEach(function(el) {
+        var t = (el.textContent||'').trim();
+        if (t === 'PORPERTIES' || t === 'PROPERTIES') el.textContent = 'DEALS';
+        if (t === 'All properties') el.textContent = 'All deals';
+      });
+    }
+    
+    // ========================================
+    // 18. BRAND NAME — Catch any remaining "Siam Real Estate Fund"
+    // ========================================
+    var walker2 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var n2;
+    while (n2 = walker2.nextNode()) {
+      if (n2.nodeValue && n2.nodeValue.indexOf('Siam Real Estate Fund') !== -1) {
+        n2.nodeValue = n2.nodeValue.replace(/Siam Real Estate Fund/g, 'Siam Preferred Property Fund');
+      }
+    }
   }
   
   // Timing
