@@ -78,7 +78,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: 'Siam Preferred Property Fund <onboarding@resend.dev>',
-        to: ['info@chargedventures.io'],
+        to: ['romanshp@gmail.com'],
         subject: `Investor Pack Request — ${name || 'Website visitor'}`,
         html: htmlBody,
         text: textBody,
