@@ -1079,26 +1079,34 @@ transactions backed by client satisfaction and referrals.</p></div></div></div><
             return false;
           }
           
-          // POST to Resend-backed API route
-          fetch('/api/contact', {
+          // POST to FormSubmit.co (no API key needed, works with any email)
+          var fsData = new FormData();
+          fsData.append('name', formData.name || '');
+          fsData.append('email', formData.email || '');
+          if (formData.phone) fsData.append('phone', formData.phone);
+          if (formData.message) fsData.append('message', formData.message);
+          fsData.append('_subject', 'Investor Pack Request — Siam Preferred Property Fund');
+          fsData.append('_template', 'table');
+          fsData.append('_captcha', 'false');
+          
+          fetch('https://formsubmit.co/ajax/romanshp@gmail.com', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: fsData
           })
-          .then(function(response) { return response.json().then(function(data) { return { ok: response.ok, data: data }; }); })
-          .then(function(result) {
-            if (result.ok) {
+          .then(function(response) { return response.json(); })
+          .then(function(data) {
+            if (data.success) {
               showToast('Request sent \u2014 thank you! Our team will reach out shortly via email.', false);
               // Clear fields
               inputs.forEach(function(inp) { inp.value = ''; });
             } else {
-              console.error('API error:', result.data);
-              showToast('Could not send your request. Please try again or email info@chargedventures.io directly.', true);
+              console.error('FormSubmit error:', data);
+              showToast('Could not send your request. Please try again or email romanshp@gmail.com directly.', true);
             }
           })
           .catch(function(err) {
             console.error('Network error:', err);
-            showToast('Network error. Please try again or email info@chargedventures.io directly.', true);
+            showToast('Network error. Please try again or email romanshp@gmail.com directly.', true);
           });
           
           // Hide any Framer error messages that appear
